@@ -9,3 +9,13 @@
 <li>Images.</li>
 <li>....etc</li>
 </ol>
+<h4><i>Capture and Filter Data</i></h4>
+<ol>
+<li><b>Scapy</b> has a sniffer function called <b>sniff</b>.</li>
+<li>Sniff can capture data sent and from an <b>iface</b> (interface).</li>
+<li>It can call a function given to the <b>prn</b> field on each packet</li>
+</ol>
+<h4>Syntax:</h4>
+<p>from scapy.all import sniff</p>
+<p>scapy.sniff(iface=[INTERFACE], prn=[CALL_BACK_FUNCTION])</p>
+
