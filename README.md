@@ -18,4 +18,6 @@
 <h4>Syntax:</h4>
 <p>from scapy.all import sniff</p>
 <p>scapy.sniff(iface=[INTERFACE], prn=[CALL_BACK_FUNCTION])</p>
+<h4>Web page to use for testing</h4>
+<p>http://www.stealmylogin.com/demo.html</p>
 
