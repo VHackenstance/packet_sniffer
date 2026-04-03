@@ -18,6 +18,9 @@
 <h4>Syntax:</h4>
 <p>from scapy.all import sniff</p>
 <p>scapy.sniff(iface=[INTERFACE], prn=[CALL_BACK_FUNCTION])</p>
-<h4>Web page to use for testing</h4>
-<p>http://www.stealmylogin.com/demo.html</p>
+<h4>Testing with WebGoat</h4>
+<p>I installed without an issue using Docker, after installing Docker.</p>
+<p>https://owasp.org/www-project-webgoat/</p>
+<p>Use port lo as this is a loop back</p>
+<p>Seems to be working so far.</p>
 

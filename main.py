@@ -12,7 +12,8 @@ def sniff(interface):
 
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
-      print(packet.show())
+        if packet.haslayer(scapy.Raw):
+            print(packet[scapy.Raw].load)
 
 # Not going to go ON_PATH here = use arp_spoofer.
 # while building script it is easier to test it on my HOST.
