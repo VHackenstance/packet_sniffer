@@ -2,19 +2,20 @@
 import scapy.all as scapy
 from scapy.layers import http
 
-keywords =["username", "password", "login", "email", "pass", "log"]
-
 def sniff(interface):
     scapy.sniff(iface=interface, store=False, prn=process_sniffed_packet)
 
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
         if packet.haslayer(scapy.Raw):
-            load = packet[scapy.Raw].load
-            for keyword in keywords:
-                if keyword in load:
-                    print(load)
-                    break
+            print(packet[scapy.Raw].load)
 
-if __name__ == "__main__":
+if __name__ == "__webgoat_test_build__":
+    # change our interface to lo only for testing with a localhost
     sniff("lo")
+
+
+
+
+
+
