@@ -23,6 +23,8 @@
 <p>I have created an early testing build file, to use this:</p>
 <p>I installed without an issue using Docker, after installing Docker hehe.</p>
 <p>https://owasp.org/www-project-webgoat/</p>
-<p>Use port lo as this is a loop back</p>
+<p>Use port lo as this is a loop back.</p>
+<p>Run WebGoat:</p>
+<p>sudo docker run -p 8080:8080 webgoat/webgoat</p>
 <p>Seems to be working so far.</p>
 
