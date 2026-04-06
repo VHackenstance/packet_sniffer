@@ -27,4 +27,10 @@
 <p>Run WebGoat:</p>
 <p>sudo docker run -p 8080:8080 webgoat/webgoat</p>
 <p>Seems to be working so far.</p>
+<h4>Arp_spoof + Packet_sniffer</h4>
+<ol>
+<li>Target a computer on the same Network</li>
+<li>Arp_spoof to redirect the flow of packets (OnPath, MiTM)</li>
+<li>Packet_sniffer to see <b>URLs</b>, <b>usernames</b> and <b>passwords</b> sent by target.</li>
+</ol>
 

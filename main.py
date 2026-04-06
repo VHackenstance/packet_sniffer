@@ -1,32 +1,15 @@
 #/usr/bin/env python
-from scapy.all import sniff
+import scapy.all as scapy
 from scapy.layers import http
-from scapy.layers.inet import TCP
 
-keywords =["username", "password", "login", "email", "pass", "log"]
-
-def sniff_packet(interface):
-    sniff(iface=interface, store=False, prn=process_sniffed_packet)
+from utils.packet_sniffer_utils import sniff, get_url, get_login_info
 
 def process_sniffed_packet(packet):
-    # We cannot sniff https for urls this is going to fail every time, so we try and
-    # bind this to a non-standard port, eg, 5000
-    packet.bind_layers(TCP, http.HTTP, dport=5000)
-    packet.bind_layers(TCP, http.HTTP, sport=5000)
-
     if packet.haslayer(http.HTTPRequest):
-        url = packet[http.HTTPRequest].Host + packet[http.HTTPResponse].Path
-        print(url)
-    else:
-        print("Packet has no http.HTTPRequest")
-
-    # if packet.haslayer(http.HTTPRequest):
-    #     if packet.haslayer(Raw):
-    #         load = packet[Raw].load
-    #         for keyword in keywords:
-    #             if keyword in load:
-    #                 print(load)
-    #                 break
+        get_url(packet)
+        login_info = get_login_info(packet)
+        if login_info:
+            print("[+] Possible username/password >> " + login_info)
 
 if __name__ == "__main__":
-    sniff_packet("eth0")
+    sniff("lo", process_sniffed_packet)
