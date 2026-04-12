@@ -33,4 +33,16 @@
 <li>Arp_spoof to redirect the flow of packets (OnPath, MiTM)</li>
 <li>Packet_sniffer to see <b>URLs</b>, <b>usernames</b> and <b>passwords</b> sent by target.</li>
 </ol>
+<h4>The next phase in the project(s?)</h4>
+<h4>Intercepting and Modifying Packets</h4>
+<ol>
+    <li>Scapy can be used to:
+        <ol>
+            <li>Create Packets.</li>
+            <li>Analyse packets.</li>
+            <li>Send/recieve packets.</li>
+        </ol>
+    </li>
+    <li>But it cannot be used to <b>intercept</b> packet/flows.</li>
+</ol>
 
