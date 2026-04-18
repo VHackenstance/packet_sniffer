@@ -4,7 +4,7 @@
 <p><b>Filter</b> this data</p>
 <p>Display interesting information such as:</p>
 <ol>
-<li>Login Information (usernames and <b>passwords</b>).</li>
+<li>Login Credentials (usernames and <b>passwords</b>).</li>
 <li>Visited <b>websites</b>.</li>
 <li>Images.</li>
 <li>....etc</li>
@@ -30,11 +30,11 @@
 <h4>Arp_spoof + Packet_sniffer</h4>
 <ol>
 <li>Target a computer on the same Network</li>
-<li>Arp_spoof to redirect the flow of packets (OnPath, MiTM)</li>
+<li>Arp_spoof to redirect the flow of packets (OnPath, PitM)</li>
 <li>Packet_sniffer to see <b>URLs</b>, <b>usernames</b> and <b>passwords</b> sent by target.</li>
 </ol>
 <h4>The next phase in the project(s?)</h4>
-<h4>Intercepting and Modifying Packets</h4>
+<h5>Intercepting and Modifying Packets</h5>
 <ol>
     <li>Scapy can be used to:
         <ol>
