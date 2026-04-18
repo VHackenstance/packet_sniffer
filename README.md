@@ -1,6 +1,5 @@
 <h4>Packet Sniffer</h4>
-<p><b>Capture</b> the data flowing through an interface</p>
-<p><b>Read</b> the packet data that has flowed through an interface</p>
+<p><b>Capture</b> data flowing through an interface</p>
 <p><b>Filter</b> this data</p>
 <p>Display interesting information such as:</p>
 <ol>
@@ -9,9 +8,10 @@
 <li>Images.</li>
 <li>....etc</li>
 </ol>
+<h3>packet_sniffer</h3>
 <h4><i>Capture and Filter Data</i></h4>
 <ol>
-<li><b>Scapy</b> has a sniffer function called <b>sniff</b>.</li>
+<li><b>Scapy</b> has a sniffer function, <b>sniff</b>.</li>
 <li>Sniff can capture data sent and from an <b>iface</b> (interface).</li>
 <li>It can call a function given to the <b>prn</b> field on each packet</li>
 </ol>

