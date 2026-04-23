@@ -1,13 +1,14 @@
 #/usr/bin/env python
 import scapy.all as scapy
+from scapy.layers import http
 
-if __name__ == "__packet_sniffer__":
-    print("packet_sniffer is being called")
 
 def sniff(interface):
-    scapy.sniff(iface=interface, store=False, prn=process_sniffed_packet, filter="udp")
+    scapy.sniff(iface=interface, store=False, prn=process_sniffed_packet)
 
 def process_sniffed_packet(packet):
-    print(packet)
+    if packet.haslayer(http.HTTPRequest):
+        if packet.haslayer(scapy.Raw):
+            print(packet[scapy.Raw].load)
 
 sniff("eth0")

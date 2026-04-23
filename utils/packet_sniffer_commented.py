@@ -25,6 +25,8 @@ def process_sniffed_packet(packet):
     # If our packet has a http layer
     if packet.haslayer(http.HTTPRequest):
         # if our packet http has a Raw layer
+        # This works testing with http://testasp.vulnweb.com/Default.asp?
+        # On login.  Loading the site does not return a POST request
         if packet.haslayer(Raw):
             # Print the load details, which should contain the UN and PW
             load = packet[Raw].load
