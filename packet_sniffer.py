@@ -5,7 +5,10 @@ from scapy.layers import http
 
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
-        print(packet)
+        if packet.haslayer(scapy.Raw):
+            load = packet[scapy.Raw].load
+            if "email" in load:
+                print(load)
 
 def sniff(interface):
     scapy.sniff(iface=interface, store=False, prn=process_sniffed_packet)
