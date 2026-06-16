@@ -9,7 +9,7 @@ def sniff_interface(interface, process_packet):
     # sniff(er) Arguments:
     # store=False: tells scapy not to store the packets in memory.
     # prn=[CALL_BACK_FUNCTION]:
-    # filter="": tcp, udp, port #, arp, * not used here
+    # filter="": tcp, udp, port #, arp, ***** not used here
     # Filter http packets with a third party module
     sniff(iface=interface, store=False, prn=process_packet)
 
