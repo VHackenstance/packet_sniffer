@@ -14,5 +14,8 @@ def enable_bettercap():
   else:
 	print("[-] Please provide an interface value for bettercap iface.")
 
+def disable_bettercap():
+  print("[+] Shut down bettercap.")
+
 print("\n[+] Hello, this is enable_bettercap.  Keep smiling!")
 enable_bettercap()

@@ -13,11 +13,13 @@ def get_login_info(packet):
     for keyword in keywords:
         if keyword in load.lower():
             return load
+  return None
+
 
 def process_sniffed_packet(packet):
     if packet.haslayer(http.HTTPRequest):
         url = get_url(packet)
-        print("[+] HTTP Requeset for URL: " + url.decode())
+        print("[+] HTTP Request for URL: " + url.decode())
 
         login_info = get_login_info(packet)
         if login_info:
