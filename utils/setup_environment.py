@@ -1,5 +1,11 @@
 #/usr/bin/env python
-
+import subprocess
+# Required as DEVNULL only added to subprocess from V3.3
+try:
+	from subprocess import DEVNULL
+except ImportError:
+	import os
+	DEVNULL = open(os.devnull, 'wb')
 
 
 # SET UP THE EXPLOIT ENVIRONMENT
@@ -7,7 +13,23 @@
 
 # A. On ENTRY.
 	# 1. Enable port forwarding.
-		# a. I don't think we need check but it might be fun to do so
+		# a. Bug: cat /proc/sys/net/ipv4/ip_forward return 1,
+		# just enable regardless
+print("[+] Setting up environment...")
+print("[+] Enable Port Forwarding...")
+subprocess.call(
+	'echo 1 | sudo tee "/proc/sys/net/ipv4/ip_forward"',
+	shell=True,
+	stdout=DEVNULL,
+)
+# Check to make sure this worked
+with open('/proc/sys/net/ipv4/ip_forward', 'r') as f:
+	value = f.read().strip()
+	if value == "1":
+		print("[+] Port Forwarding enabled.")
+	else:
+		print("[-] Something went wrong.  Manually enable port forwarding.")
+		exit()
 	# 2. Set iptables
 		# a. I now realize  it is easier just to set ALL the iptables
 		# b. Set default channel 0 but allow user to specify another

@@ -32,8 +32,9 @@ def check_port_forwarding():
 
 def disable_port_forwarding():
 	print("[+] Ctrl C Exiting: Disabling port forwarding. ")
-	subprocess.call("echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward", shell=True)
+	subprocess.call("echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward", shell=True)
 	with open('/proc/sys/net/ipv4/ip_forward', 'r') as f:
+		value = f.read().strip()
 		if value == "0":
 			print("[+] Port Forwarding disabled. Bye bye keep smiling.")
 			exit()
