@@ -23,6 +23,18 @@ def enable_port_forwarding():
 			print("[-] Something went wrong.  Manually enable port forwarding.")
 			exit()
 
+def disable_port_forwarding():
+	print("[+] Ctrl C Exiting: Disabling port forwarding. ")
+	subprocess.call("echo 0 | sudo tee /proc/sys/net/ipv4/ip_forward", shell=True)
+	with open('/proc/sys/net/ipv4/ip_forward', 'r') as f:
+		value = f.read().strip()
+		if value == "0":
+			print("[+] Port Forwarding disabled. Bye bye keep smiling.")
+			exit()
+		else:
+			print("[+] Something went wrong.  Manually disable.")
+			exit()
+
 def set_iptables():
 	number = None
 	yes_choice = {'yes', 'y'}
@@ -67,13 +79,27 @@ def start_bettercap():
 		print("\n[-] Ctrl-C detected. Shutting down... ")
 		exit()
 
-print("[+] Setting up environment...")
+try:
+	print("[+] Setting up environment...")
+	print("[+] This script is for use with Linux only: ")
 
-# 1. Enable Port Forwarding.
-enable_port_forwarding()
+	# 1. Enable Port Forwarding.
+	enable_port_forwarding()
 
-# 2. Set IP Tables
-set_iptables()
+	# 2. Set IP Tables
+	set_iptables()
 
-# 3. Start Bettercap
-start_bettercap()
+	# 3. Start Bettercap
+	start_bettercap()
+except Exception as e:
+	print("[-] Something went wrong while setting up environment: ", e)
+except KeyboardInterrupt:
+	print("\n[-] Ctrl-C detected. Shutting down... ")
+
+	# TODO: shutdown scripts here
+	# 1. shutdown port forwarding
+	disable_port_forwarding()
+	# 2. flush iptables
+	# 3. Better cap can manage itself
+
+	exit()
