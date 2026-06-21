@@ -30,4 +30,3 @@ def disable_bettercap():
 	print("[+] Shut down bettercap.")
 
 print("\n[+] Hello, this is start_bettercap.  Keep smiling!")
-start_bettercap()

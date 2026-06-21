@@ -20,9 +20,5 @@ def disable_port_forwarding():
 		value = f.read().strip()
 		if value == "0":
 			print("[+] Port Forwarding disabled. Bye bye keep smiling.")
-			exit()
 		else:
 			print("[+] Something went wrong.  Manually disable.")
-			exit()
-
-disable_port_forwarding()

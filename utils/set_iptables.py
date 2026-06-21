@@ -20,5 +20,3 @@ def set_iptables():
 	subprocess.call(["sudo", "iptables", "-L"])
 	# return the number to set in the queue call
 	return number
-
-set_iptables()
