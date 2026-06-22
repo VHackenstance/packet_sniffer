@@ -14,8 +14,7 @@ def disable_port_forwarding():
 		shell=True,
 		stdout=DEVNULL
 	)
-	print("[+] Port Forwarding disabled.")
-	exit()
+
 	with open('/proc/sys/net/ipv4/ip_forward', 'r') as f:
 		value = f.read().strip()
 		if value == "0":

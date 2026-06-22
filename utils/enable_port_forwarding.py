@@ -11,12 +11,13 @@ def enable_port_forwarding():
     yes_choice = {'yes', 'y'}
     no_choice = {'no', 'n'}
     try:
-        value = 0
+        value = None
         while value != 1:
             with open('/proc/sys/net/ipv4/ip_forward', 'r') as f:
                 value = f.read().strip()
             if value == "1":
                 print("[+] Port Forwarding enabled we can proceed.")
+                value = 1
             elif value == "0":
                 confirmation = str(input("Port Forwarding should be enabled? y/n ").lower().strip())
                 if confirmation in yes_choice:

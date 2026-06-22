@@ -7,7 +7,7 @@ def set_iptables():
 	no_choice = {'no', 'n'}
 
 	print("[+] Setting iptables...")
-	user_input = input("[+] Queue number is 0. Is this acceptable?").lower().strip()
+	user_input = input("[+] Queue number is 0. Is this acceptable? y/n  ").lower().strip()
 	if user_input in yes_choice:
 		number = 0
 	if user_input in no_choice:

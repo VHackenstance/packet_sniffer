@@ -8,9 +8,9 @@ def start_bettercap():
 		yes_choice = {'yes', 'y'}
 		no_choice = {'no', 'n'}
 
-		print("[+] Starting Bettercap...")
+		print("\n [+] Starting Bettercap...")
 		print("[+] eth0 is the default first wired interface in Kali Linux")
-		user_input = input("[+] Is this an acceptable interface to use? y/n ").lower().strip()
+		user_input = input("[+] Is this an acceptable interface to use? y/n  ").lower().strip()
 		if user_input in yes_choice:
 			interface = "eth0"
 		if user_input in no_choice:
@@ -21,12 +21,3 @@ def start_bettercap():
 
 	except Exception as e:
 		print("[-] Something went wrong while starting Bettercap: ", e)
-
-	except KeyboardInterrupt:
-		print("\n[-] Ctrl-C detected. Shutting down... ")
-		exit()
-
-def disable_bettercap():
-	print("[+] Shut down bettercap.")
-
-print("\n[+] Hello, this is start_bettercap.  Keep smiling!")
