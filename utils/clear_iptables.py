@@ -14,4 +14,16 @@ def clear_iptables():
 		exit()
 	print("[+] Check IP Tables have been cleared.")
 	subprocess.call(["sudo", "iptables", "-L"])
-	# return the number to set in the queue call
+
+
+
+
+
+
+
+
+
+
+
+
+
